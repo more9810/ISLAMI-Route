@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="This.Splash_Api" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/splash_screen_bg</item>
+        <item name="postSplashScreenTheme">@style/Theme.Islami</item>
+    </style>
+</resources>
