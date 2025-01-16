@@ -40,6 +40,7 @@ class QuranRecycler: RecyclerView.Adapter<QuranRecycler.QuranViewHolder>(){
     }
 
     var onItemClickListener: OnItemClickListener? = null
+
     fun interface OnItemClickListener{
         fun onClickItem(position: Int,quran: Quran)
     }
