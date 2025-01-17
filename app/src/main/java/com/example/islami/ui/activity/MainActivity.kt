@@ -13,6 +13,7 @@ import com.example.islami.databinding.ActivityMainBinding
 import com.example.islami.ui.fragments.HadithFragment
 import com.example.islami.ui.fragments.QuranFragment
 import com.example.islami.ui.fragments.RadioFragment
+import com.example.islami.ui.fragments.SiphaFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.item_sipha -> {
-                    HadithFragment()
+                    SiphaFragment()
                 }
 
                 R.id.item_radio -> {

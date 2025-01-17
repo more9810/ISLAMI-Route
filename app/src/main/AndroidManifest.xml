@@ -13,9 +13,12 @@
         android:theme="@style/Theme.Islami"
         tools:targetApi="31">
         <activity
-            android:theme="@style/This.Splash_Api"
+            android:name=".ui.activity.HadithDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/This.Splash_Api">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
