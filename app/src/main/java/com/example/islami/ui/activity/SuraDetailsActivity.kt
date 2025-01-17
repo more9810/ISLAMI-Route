@@ -11,7 +11,7 @@ import com.example.islami.R
 import com.example.islami.adapters.quran.AyatRecycler
 import com.example.islami.adapters.quran.Quran
 import com.example.islami.databinding.ActivitySuraDetilsBinding
-import com.example.islami.models.DataManger.readFromAssets
+import com.example.islami.models.DataManger.readFromAsset
 import com.example.islami.utils.Const
 
 class SuraDetailsActivity : AppCompatActivity() {
@@ -48,7 +48,7 @@ class SuraDetailsActivity : AppCompatActivity() {
     }
 
     private fun getSuraAyat(index: String) {
-        val lines = readFromAssets("quran/$index").trim()
+        val lines = readFromAsset("quran/$index.txt").trim()
 
         val aya = lines.split("\n")
 
