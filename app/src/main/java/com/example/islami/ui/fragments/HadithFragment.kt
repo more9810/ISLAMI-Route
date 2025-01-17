@@ -1,60 +1,66 @@
 package com.example.islami.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.islami.R
+import androidx.fragment.app.Fragment
+import com.example.islami.adapters.hadith.HadithAdapter
+import com.example.islami.databinding.FragmentHadithBinding
+import com.example.islami.models.DataManger.readFromAsset
+import com.example.islami.models.Hadith
+import com.example.islami.ui.activity.HadithDetailsActivity
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HadithFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HadithFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private val hadithList: MutableList<Hadith> = mutableListOf()
+    private lateinit var binding: FragmentHadithBinding
+    private lateinit var adapter: HadithAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hadith, container, false)
+    ): View {
+        binding = FragmentHadithBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HadithFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HadithFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getData()
+        initAdapter()
     }
+
+    private fun initAdapter() {
+        adapter = HadithAdapter()
+        adapter.setItem(hadithList)
+        binding.rvHadith.setHasFixedSize(true)
+        binding.rvHadith.layoutManager = CarouselLayoutManager()
+        CarouselSnapHelper().attachToRecyclerView(binding.rvHadith)
+        binding.rvHadith.adapter = adapter
+
+        adapter.onItemClick = { positin, content ->
+            val intent = Intent(activity,HadithDetailsActivity::class.java )
+            intent.putExtra("HADITH",content)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun getData() {
+        val fileContent = activity?.readFromAsset("hadith/ahadeth.txt")?.trim() ?: return
+        val listOfHadith = fileContent.trim().split("#")
+
+        listOfHadith.forEach { singleHadith ->
+            val lines = singleHadith.trim().split("\n")
+            val title = lines[0]
+            val content = lines.takeLast(lines.size - 1).joinToString("\n")
+            hadithList.add(Hadith(title, content))
+        }
+
+    }
+
+
 }

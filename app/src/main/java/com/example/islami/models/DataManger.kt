@@ -1,7 +1,6 @@
 package com.example.islami.models
 
 import android.content.Context
-import com.example.islami.adapters.quran.Quran
 
 object DataManger {
     private var arSuras: List<String> = arrayOf(
@@ -374,5 +373,11 @@ object DataManger {
         return assets.open("${name}.txt").bufferedReader().use {
             it.readText()
         }
+    }
+}
+
+    fun Context.readFromAsset(fileName : String) : String{
+        return assets.open(fileName).bufferedReader().use {
+            it.readText()}
     }
 }
