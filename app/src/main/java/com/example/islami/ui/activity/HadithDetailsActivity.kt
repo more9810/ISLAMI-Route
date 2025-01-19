@@ -22,6 +22,9 @@ class HadithDetailsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+
         val hadith = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent?.getParcelableExtra("HADITH", Hadith::class.java)
         } else {
@@ -30,9 +33,23 @@ class HadithDetailsActivity : AppCompatActivity() {
 
         if (hadith != null) {
 
-            binding.tvTitle.text = hadith.title
+            binding.tvTitleDetilse.text = hadith.title
             binding.tvContent.text = hadith.content
 
         }
+
+
+
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

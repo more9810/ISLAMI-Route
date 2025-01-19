@@ -2,6 +2,7 @@ package com.example.islami.ui.activity
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setup() {
         setupNavigation()
-        binding.btnNav.selectedItemId = R.id.item_quran
+      binding.btnNav.selectedItemId = R.id.item_quran
     }
 
     private fun setupNavigation() {
@@ -56,14 +57,24 @@ class MainActivity : AppCompatActivity() {
 
                 else -> QuranFragment()
             }
-                showFragment(fragment)
+            showFragment(fragment)
             return@setOnItemSelectedListener true
         }
     }
 
+
     private fun showFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frameContainer, fragment).commit()
+        if (fragment is SiphaFragment) {
+            supportFragmentManager.beginTransaction().replace(R.id.frameSiphaContainer, fragment)
+                .commit()
+            binding.frameContainer.visibility = View.GONE
+            binding.frameSiphaContainer.visibility = View.VISIBLE
+        } else {
+            supportFragmentManager.beginTransaction().replace(R.id.frameContainer, fragment)
+                .commit()
+            binding.frameSiphaContainer.visibility = View.GONE
+            binding.frameContainer.visibility = View.VISIBLE
+        }
     }
 
 

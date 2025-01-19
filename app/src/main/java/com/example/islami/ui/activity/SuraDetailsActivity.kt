@@ -48,6 +48,7 @@ class SuraDetailsActivity : AppCompatActivity() {
     }
 
     private fun getSuraAyat(index: String) {
+
         val lines = readFromAsset("quran/$index.txt").trim()
 
         val aya = lines.split("\n")

@@ -1,6 +1,7 @@
 package com.example.islami.models
 
 import android.content.Context
+import android.view.View
 import com.example.islami.adapters.quran.Quran
 
 object DataManger {
@@ -372,6 +373,9 @@ object DataManger {
 
 
 
+    fun View.showActoi(){
+
+    }
     fun Context.readFromAsset(fileName: String): String {
         return assets.open(fileName).bufferedReader().use {
             it.readText()

@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sepha_background"
     tools:context=".ui.fragments.SiphaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/imvTitle"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo_islami"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/imvSipha"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imvTitle">
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sebha_body" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvZikr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:layout_marginTop="24dp"
+        android:autoSizeMaxTextSize="36sp"
+        android:fontFamily="@font/janna_lt_bold"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/imvSipha"
+        app:layout_constraintEnd_toEndOf="@+id/imvSipha"
+        app:layout_constraintStart_toStartOf="@+id/imvSipha"
+        app:layout_constraintTop_toTopOf="@id/imvSipha"
+        tools:text="سبحان الله سبحان الله " />
+
+    <TextView
+        android:id="@+id/tvCountZikr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/janna_lt_bold"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvZikr"
+        app:layout_constraintStart_toStartOf="@+id/tvZikr"
+        app:layout_constraintTop_toBottomOf="@+id/tvZikr"
+        tools:text="20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

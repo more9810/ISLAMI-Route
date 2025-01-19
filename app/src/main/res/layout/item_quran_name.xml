@@ -55,7 +55,7 @@
         android:id="@+id/tvSuraArNem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/elmessiri_semibold"
+        android:fontFamily="@font/el_messiri_semi_bold"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"

@@ -9,7 +9,6 @@ import com.example.islami.models.Hadith
 class HadithAdapter : RecyclerView.Adapter<HadithAdapter.HadithViewHolder>() {
 
     private var item: List<Hadith> = emptyList()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HadithViewHolder {
         return HadithViewHolder(
             ItemHadithBinding.inflate(
@@ -37,7 +36,12 @@ class HadithAdapter : RecyclerView.Adapter<HadithAdapter.HadithViewHolder>() {
             binding.root.setOnClickListener {
                 onItemClick?.invoke(position,hadith)
             }
+            binding.tvContent.setOnClickListener {
+                onItemClick?.invoke(position,hadith)
+            }
         }
+
+
     }
     var onItemClick: ((Int,Hadith) -> Unit)? = null
     fun interface OnClickItem {
